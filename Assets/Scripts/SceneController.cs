@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 using System;
 
-public class SceneController : MonoBehaviour
+public class SceneController : MonoBehaviour, IPointerDownHandler
 {
 
     public static Action<bool, Vector3> OnTouch = delegate { };
@@ -31,9 +32,21 @@ public class SceneController : MonoBehaviour
         OnTouch(update, Vector3.zero);
     }
 
+    public void OnMouseDown()
+    {
+        Debug.Log("Клик");
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        update = true;
+        Debug.Log(eventData.position);
+        OnTouch(update, eventData.position);
+    }
+
     private void Update()
     {
-        if  (Input.touchCount>0) 
+      /*  if  (Input.touchCount>0) 
         {
             Touch tab = Input.GetTouch(0);
             if (tab.phase == TouchPhase.Began)
@@ -42,5 +55,6 @@ public class SceneController : MonoBehaviour
                 OnTouch(update, tab.position);
             }
         }
+      */
     }
 }
