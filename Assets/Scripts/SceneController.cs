@@ -6,21 +6,38 @@ using System;
 public class SceneController : MonoBehaviour 
 {
 
-    public static Action<Vector3> OnTouch = delegate { };
+    [SerializeField] private GameObject Player;
+    [SerializeField] private ParticleSystem Appearance;
 
-    public void OnMouseDown()
+    private GameObject _player;
+    private ParticleSystem _appearance;
+
+
+    public void Start()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit)) 
+        if (_player == null) 
         {
-
-            OnTouch(hit.point);
+            StartCoroutine(Begin());
         }
     }
 
-    private void Update()
+    private IEnumerator Begin() 
     {
 
+        yield return new WaitForSeconds(1f);  //Спустя 1 секунду появляется эффект.
+
+        _appearance = Instantiate(Appearance) as ParticleSystem;
+
+        _player = Instantiate(Player) as GameObject;
+
+        _appearance.transform.position = _player.transform.position;
+
+        yield return new WaitForSeconds(3f);  //Спустя ещё 3 секунды сам игрок.
+
+        _player.SetActive(true);
+
+        Destroy(_appearance);
+        
     }
+
 }

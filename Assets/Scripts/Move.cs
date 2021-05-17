@@ -8,11 +8,28 @@ public class Move : MonoBehaviour
 {
     private NavMeshAgent navMeshAgent;
 
+    private bool theft = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        SceneController.OnTouch += Movement;
+        Touch.OnTouch += Movement;
         navMeshAgent = GetComponent<NavMeshAgent>();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Exhibit") 
+        {
+            theft = true;
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.name == "Finish" && theft == true) 
+        {
+            Debug.Log("Новый уровень!");
+        }
+
     }
 
     void Movement(Vector3 tab) 
