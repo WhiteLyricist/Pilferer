@@ -19,28 +19,29 @@ public class Move : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Exhibit") 
+        if (collision.gameObject.name == "Exhibit") //Подбор предмета что бы пройти уровень.
         {
             theft = true;
             Destroy(collision.gameObject);
         }
 
-        if (collision.gameObject.name == "Finish" && theft == true) 
+        if (collision.gameObject.name == "Finish" && theft == true) //Проверка поднят ли предмет что бы пройти уровень.
         {
+            theft = false;
             Debug.Log("Новый уровень!");
         }
 
     }
 
-    void Movement(Vector3 tab) 
+    void Movement(Vector3 tab) //Перемещение при нажатии на пол.
     {
         tab = new Vector3(tab.x, transform.position.y, tab.z);
         navMeshAgent.SetDestination(tab);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-
+        Touch.OnTouch -= Movement;
     }
+
 }

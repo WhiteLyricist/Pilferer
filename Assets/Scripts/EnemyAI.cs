@@ -26,7 +26,7 @@ public class EnemyAI : MonoBehaviour
         GotoNextPoint();
     }
 
-    void GotoNextPoint()
+    void GotoNextPoint() //Переход к следующей точке в списке.
     {
         if (wayPoints.Length == 0)
             return;

@@ -15,7 +15,7 @@ public class SceneController : MonoBehaviour
 
     public void Start()
     {
-        if (_player == null) 
+        if (_player == null) //Если игрока нет, создаём его.
         {
             StartCoroutine(Begin());
         }
