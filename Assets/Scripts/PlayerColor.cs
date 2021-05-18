@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerColor : MonoBehaviour
 {
-    public static string GamePlayerColor
+    public static string GamePlayerColor //Для сохранения цвета игрока.
     {
         get => PlayerPrefs.GetString("GamePlayerColor", "White");
         set

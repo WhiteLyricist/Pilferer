@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SizeAdaptationBackground : MonoBehaviour
 {
-    private void Awake()
+    private void Awake() //Для универсализации фона.
     {
             var newWidth = Screen.width * transform.localScale.y / Screen.height;
 

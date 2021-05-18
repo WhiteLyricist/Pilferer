@@ -41,20 +41,20 @@ public class LoadController : MonoBehaviour
         StartCoroutine(Begin());
     }
 
-    private void Catch() 
+    private void Catch() //Если поймали.
     {
         CatchButton.transform.LeanScale(Vector2.one, 0.3f).setEaseInBack();
         LevelFailed.gameObject.SetActive(true);
         LevelFailed.transform.LeanMoveLocalY(0, 3f);
     }
 
-    public void Anew() 
+    public void Anew() //Перезаход на уровень.
     {
         SceneManager.LoadScene(currentLevel);
 
     }
 
-    private IEnumerator Begin()
+    private IEnumerator Begin()  //Обработка прохождения уровня/игры.
     {
         if (currentLevel != "Last")
         {

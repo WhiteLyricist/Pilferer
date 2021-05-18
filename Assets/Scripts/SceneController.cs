@@ -26,7 +26,7 @@ public class SceneController : MonoBehaviour
             StartCoroutine(Begin());
         }
     }
-    private void CurrentLevel(string nameLevel)
+    private void CurrentLevel(string nameLevel)  //Сохранение текущего уровня.
     {
         PlayerPrefs.SetString("CurrenLevel", nameLevel);
         PlayerPrefs.Save();
@@ -49,6 +49,11 @@ public class SceneController : MonoBehaviour
 
         Destroy(_appearance);
         
+    }
+
+    public void BackMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     private void OnDestroy()

@@ -19,15 +19,15 @@ public class Move : MonoBehaviour
     void Start()
     {
 
-        Color colorPlayer;
+        Color colorPlayer;  //Смена цвета игрока
         ColorUtility.TryParseHtmlString(PlayerColor.GamePlayerColor, out colorPlayer);
-        GetComponent<Renderer>().material.color = colorPlayer;
+        GetComponent<Renderer>().material.color = colorPlayer;  
 
         Touch.OnTouch += Movement;
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)  //Проверка на попадание в зону выхода и подбора предмета
     {
         if (collision.gameObject.name == "Exhibit") //Подбор предмета что бы пройти уровень.
         {

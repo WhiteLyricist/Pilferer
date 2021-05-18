@@ -7,7 +7,7 @@ public class Touch : MonoBehaviour
 {
     public static Action<Vector3> OnTouch = delegate { };
 
-    public void OnMouseDown()
+    public void OnMouseDown() //Нажатие на экран и высчитывание координат точки на сцене.
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;

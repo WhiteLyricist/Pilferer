@@ -12,11 +12,6 @@ public class UIController : MonoBehaviour
     [SerializeField] private Button ContinueGameButton;
     [SerializeField] private Button MenuButton;
 
-    private void Start()
-    {
-      
-    }
-
     public void SetColor(string colorPlayer)
     {
         PlayerColor.GamePlayerColor = colorPlayer;
@@ -31,7 +26,6 @@ public class UIController : MonoBehaviour
     public void ContinueGame() 
     {
         NewGameButton.transform.LeanScale(Vector2.one, 0.3f).setEaseInBack();
-        Debug.Log(PlayerPrefs.GetString("CurrenLevel"));
         SceneManager.LoadScene(PlayerPrefs.GetString("CurrenLevel", "Level1"));
     }
 }
