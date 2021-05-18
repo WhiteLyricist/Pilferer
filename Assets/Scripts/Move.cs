@@ -4,8 +4,13 @@ using UnityEngine;
 using System;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(Renderer))]
+
 public class Move : MonoBehaviour
 {
+
+    public static Action OnEnd = delegate { };
+
     private NavMeshAgent navMeshAgent;
 
     private bool theft = false;
@@ -13,6 +18,11 @@ public class Move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        Color colorPlayer;
+        ColorUtility.TryParseHtmlString(PlayerColor.GamePlayerColor, out colorPlayer);
+        GetComponent<Renderer>().material.color = colorPlayer;
+
         Touch.OnTouch += Movement;
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
@@ -28,7 +38,7 @@ public class Move : MonoBehaviour
         if (collision.gameObject.name == "Finish" && theft == true) //Проверка поднят ли предмет что бы пройти уровень.
         {
             theft = false;
-            Debug.Log("Новый уровень!");
+            OnEnd();
         }
 
     }

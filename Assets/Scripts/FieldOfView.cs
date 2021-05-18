@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class FieldOfView : MonoBehaviour
 {
+
+	public static Action OnCatch = delegate { };
 
 	public float viewRadius;
 	[Range(0, 360)]
@@ -63,8 +66,7 @@ public class FieldOfView : MonoBehaviour
 				if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
 				{
 					visibleTargets.Add(target);
-					//ДЛЯ СТОЛКНОВЕНИЯ С ИГРОКОС
-					Debug.Log("Нашёл тебя сука");
+					OnCatch();
 				}
 			}
 		}
